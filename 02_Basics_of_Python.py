@@ -100,3 +100,44 @@ while 1:
 
     if count == 3:
         break
+
+# スコープ
+# スコープとは変数が参照可能な範囲のこと
+# グローバルスコープ: プログラム全体で参照可能な範囲
+global GlobalNumber # グローバル変数を定義
+GlobalNumber = 2
+
+# クラス
+class House:
+    # __init__メソッドはコンストラクタ
+    def __init__(self, name):
+        self.name = name
+    def hello(self):
+        print(f"Hello, {self.name}")
+
+sato = House("佐藤")
+suzuki = House("鈴木")
+
+# 継承
+class Link:
+    def __init__(self):
+        self.a = 1
+        self.b = 2
+
+# Linkクラスを継承したChainクラス
+# __init__メソッドがない場合は親クラスの__init__メソッドが呼び出される
+class Chain(Link):
+    def sum(self):
+        return self.a + self.b
+    
+chain = Chain()
+
+# 親クラスの__init__メソッドを呼び出す
+class ChainA(Link):
+    super().__init__()
+    def __init__(self):
+        self.c = 5
+    def sum(self):
+        return self.a + self.b + self.c
+    
+chainA = ChainA()
