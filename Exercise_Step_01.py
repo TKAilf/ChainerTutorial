@@ -147,3 +147,36 @@ somefunction()
 # 2以上の整数 p が素数であるとは、「どんな 2 以上 p-1 以下の整数 k に対しても p は k で割り切れない」が成り立つことを指します。素数を小さい順から列挙すると、2, 3, 5, 7, 11, 13, 17, … となります。 チュートリアルで学んだ制御構文である if や for を用いて、2 から 100 からまでに含まれる素数を列挙して下さい。
 print([x for x in range(2, 101) if all(x % y != 0 for y in range(2, x))]) 
 
+# 問5.1 (プログラムにおけるベクトル・行列の計算)
+# Pythonコード上でベクトルや行列に関する演算を行うことを考えてみよう。
+# ベクトルはfloatのリスト、行列はfloatのリストのリストとして表現することにする。
+# ベクトルx = [3, 7, 2]と行列 y=[[1,2,3][4,5,6]]とする。
+# 2つのベクトルx,yを受け取り、その和x+yを返す関数を書いてください。
+def add_vector(x, y):
+    return [x[i] + y[i] for i in range(len(x))]
+
+x = [1, 2, 3]
+y = [8, 1, 2]
+anser = add_vector(x, y)
+print(anser)
+# 2つの行列 X, Yを受け取り、その和 X+Yを返す関数を書いて下さい。コードは例えば以下のようになります。
+def add_matrix(X, Y):
+    return [add_vector(X[i], Y[i]) for i in range(len(X))]
+X = [[1, 2, 3], [4, 5, 6]]
+Y = [[8, 1, 2], [-1, 0, -2]]
+answer = add_matrix(X, Y)
+print(answer)
+# 行列 Xとベクトル yを受け取り、その積 Xyを返す関数を書いて下さい。
+def mul_matrix_vector(X, y):
+    return [sum([X[i][j] * y[j] for j in range(len(y))]) for i in range(len(X))]
+X = [[1, 2, 3],[4, 5, 6]]
+y = [8, 1, 2]
+answer = mul_matrix_vector(X, y)
+print(answer)
+# 2つの行列 X, Yを受け取り、その積 XYを返す関数を書いて下さい。
+def mul_matrix(X, Y):
+    return [mul_matrix_vector(X, Y[i]) for i in range(len(Y))]
+X = [[1, 2, 3],[4, 5, 6]]
+Y = [[8, 1],[-1, 0],[0, 1]]
+anwer = mul_matrix(X, Y)
+print(anwer)
